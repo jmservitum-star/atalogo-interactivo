@@ -76,23 +76,9 @@
 #sectorGrid .sector-card[data-sector="all"]>span:nth-last-child(2){color:#0b3c5d}
 </style></head>
 <body class="font-sans antialiased min-h-full flex flex-col bg-slate-100 text-slate-800">
-<!-- TOP HEADER / BRANDING BANNER -->
+<!-- TOP HEADER / RESERVED FOR FUTURE LOGO -->
 <header class="bg-servitum-navy text-white shadow-md border-b border-servitum-cyan/20">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
-<div class="flex flex-col md:flex-row items-center justify-between gap-4">
-<!-- LOGO -->
-<!-- SEARCH ENGINE BAR -->
-<div class="w-full md:w-96 relative">
-<div class="relative">
-<i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-<input class="w-full bg-white text-sm text-slate-800 placeholder-slate-400 pl-11 pr-10 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-servitum-cyan focus:ring-2 focus:ring-servitum-cyan/30 shadow-inner transition-all font-medium" id="searchInput" placeholder="Buscar producto, SKU o especificación (Presiona '/' para buscar)..." type="text"/>
-<button class="hidden absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1" id="clearSearchBtn">
-<i class="fas fa-times-circle text-base"></i>
-</button>
-</div>
-</div>
-</div>
-</div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 min-h-[76px]"></div>
 </header>
 <!-- MAIN CATALOG CONTENT -->
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-1 flex flex-col gap-6">
@@ -192,6 +178,16 @@
 <div class="grid grid-cols-4 gap-2 pb-1" id="categoryPillsContainer">
 <!-- Injected via JS -->
 </div>
+</section>
+<!-- PRODUCT SEARCH NEXT TO RESULTS -->
+<section class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 card-shadow">
+<div class="relative w-full max-w-xl mx-auto">
+<label for="searchInput" class="block text-sm font-semibold text-servitum-navy mb-2">Buscar productos</label>
+<div class="relative">
+<i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+<input class="w-full bg-white text-sm text-slate-800 placeholder-slate-400 pl-11 pr-10 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-servitum-cyan focus:ring-2 focus:ring-servitum-cyan/30 shadow-inner transition-all font-medium" id="searchInput" placeholder="Escribe el nombre del producto..." type="text"/>
+<button class="hidden absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1" id="clearSearchBtn" aria-label="Borrar búsqueda"><i class="fas fa-times-circle text-base"></i></button>
+</div></div>
 </section>
 <!-- PRODUCT GRID DISPLAY -->
 <section class="flex-1 flex flex-col">
