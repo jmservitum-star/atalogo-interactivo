@@ -179,16 +179,15 @@
 <!-- Injected via JS -->
 </div>
 </section>
-<!-- PRODUCT SEARCH NEXT TO RESULTS -->
-<section class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 card-shadow">
-<div class="relative w-full max-w-xl mx-auto">
-<label for="searchInput" class="block text-sm font-semibold text-servitum-navy mb-2">Buscar productos</label>
+<!-- COMPACT LEFT-ALIGNED PRODUCT SEARCH -->
+<div class="w-full max-w-sm">
+<label for="searchInput" class="block text-xs font-semibold text-servitum-navy mb-1.5">Buscar productos</label>
 <div class="relative">
-<i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-<input class="w-full bg-white text-sm text-slate-800 placeholder-slate-400 pl-11 pr-10 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-servitum-cyan focus:ring-2 focus:ring-servitum-cyan/30 shadow-inner transition-all font-medium" id="searchInput" placeholder="Escribe el nombre del producto..." type="text"/>
-<button class="hidden absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1" id="clearSearchBtn" aria-label="Borrar búsqueda"><i class="fas fa-times-circle text-base"></i></button>
-</div></div>
-</section>
+<i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+<input class="w-full bg-white text-sm text-slate-800 placeholder-slate-400 pl-9 pr-9 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-servitum-cyan focus:ring-2 focus:ring-servitum-cyan/30 transition-all" id="searchInput" placeholder="Buscar producto..." type="text"/>
+<button class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1" id="clearSearchBtn" aria-label="Borrar búsqueda"><i class="fas fa-times-circle text-base"></i></button>
+</div>
+</div>
 <!-- PRODUCT GRID DISPLAY -->
 <section class="flex-1 flex flex-col">
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5" id="productGrid">
