@@ -78,7 +78,7 @@
 <body class="font-sans antialiased min-h-full flex flex-col bg-slate-100 text-slate-800">
 <!-- TOP HEADER / RESERVED FOR FUTURE LOGO -->
 <header class="bg-servitum-navy text-white shadow-md border-b border-servitum-cyan/20">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 min-h-[76px] flex items-center"><img src="logo_servitum_original.webp" alt="Servitum" class="block w-auto h-12 sm:h-14 max-w-[260px] object-contain" /></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 min-h-[76px] flex items-center"><div class="bg-white rounded-xl px-4 py-2 shadow-sm inline-flex items-center justify-center"><img src="logo_servitum_original.webp" alt="Servitum" class="block w-auto h-12 sm:h-14 max-w-[260px] object-contain" /></div></div>
 </header>
 <!-- MAIN CATALOG CONTENT -->
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-1 flex flex-col gap-6">
@@ -206,6 +206,8 @@
 </div>
 </section>
 </main>
+<!-- FLOATING BACK TO TOP -->
+<button id="backToTopBtn" type="button" aria-label="Volver arriba" title="Volver arriba" class="fixed bottom-6 right-5 sm:right-7 z-40 bg-servitum-navy text-white w-12 h-12 rounded-full shadow-lg border border-white/20 items-center justify-center hover:bg-servitum-cyan focus:outline-none focus:ring-4 focus:ring-sky-200 transition-all" style="display:none"><i class="fas fa-arrow-up text-lg" aria-hidden="true"></i></button>
 <!-- FOOTER -->
 <!-- TECHNICAL SPECIFICATION MODAL -->
 <div class="fixed inset-0 z-50 hidden overflow-y-auto bg-slate-900/60 backdrop-blur-sm p-3 sm:p-6 flex items-center justify-center" id="techSheetModal">
@@ -316,6 +318,12 @@ function openTechSheet(id){const p=productsData.find(x=>x.id===id);if(!p)return;
 function closeModalFunc(){$('techSheetModal').classList.add('hidden');document.body.style.overflow='';}
 function resetAll(){currentCategory='Todas';currentSector='all';searchQuery='';$('searchInput').value='';$('clearSearchBtn').classList.add('hidden');syncSectors();renderCategoryPills();renderProducts();}
 function syncSectors(){document.querySelectorAll('.sector-card').forEach(b=>{let active=b.dataset.sector===currentSector;b.classList.toggle('sector-selected',active);b.classList.toggle('bg-servitum-navy',active);b.classList.toggle('text-white',active);b.classList.toggle('border-servitum-navy',active);b.classList.toggle('bg-slate-50',!active);b.classList.toggle('text-slate-700',!active);b.classList.toggle('border-slate-200',!active);});}
-document.addEventListener('DOMContentLoaded',()=>{renderCategoryPills();syncSectors();renderProducts();$('categoryPillsContainer').addEventListener('click',e=>{if(e.target.closest('[data-expand-categories]')){categoriesExpanded=!categoriesExpanded;renderCategoryPills();return;}let b=e.target.closest('[data-category]');if(!b)return;currentCategory=b.dataset.category;renderCategoryPills();renderProducts();});$('sectorGrid').addEventListener('click',e=>{let b=e.target.closest('[data-sector]');if(!b)return;currentSector=b.dataset.sector;currentCategory='Todas';syncSectors();renderCategoryPills();renderProducts();});$('resetSectorBtn').addEventListener('click',()=>{currentSector='all';currentCategory='Todas';syncSectors();renderCategoryPills();renderProducts();});$('searchInput').addEventListener('input',e=>{searchQuery=e.target.value;$('clearSearchBtn').classList.toggle('hidden',!searchQuery);renderProducts();});$('clearSearchBtn').addEventListener('click',()=>{searchQuery='';$('searchInput').value='';$('clearSearchBtn').classList.add('hidden');renderProducts();});$('resetAllFiltersBtn').addEventListener('click',resetAll);$('resetEmptyBtn').addEventListener('click',resetAll);$('productGrid').addEventListener('click',e=>{let b=e.target.closest('[data-open]');if(b)openTechSheet(b.dataset.open);});$('closeModalBtn').addEventListener('click',closeModalFunc);$('techSheetModal').addEventListener('click',e=>{if(e.target===$('techSheetModal'))closeModalFunc();});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModalFunc();if(e.key==='/'&&document.activeElement!==$('searchInput')){e.preventDefault();$('searchInput').focus();}});});
+document.addEventListener('DOMContentLoaded',()=>{
+const backToTopBtn=$('backToTopBtn');
+const updateBackToTop=()=>{backToTopBtn.style.display=window.scrollY>450?'flex':'none';};
+window.addEventListener('scroll',updateBackToTop,{passive:true});
+backToTopBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+updateBackToTop();
+renderCategoryPills();syncSectors();renderProducts();$('categoryPillsContainer').addEventListener('click',e=>{if(e.target.closest('[data-expand-categories]')){categoriesExpanded=!categoriesExpanded;renderCategoryPills();return;}let b=e.target.closest('[data-category]');if(!b)return;currentCategory=b.dataset.category;renderCategoryPills();renderProducts();});$('sectorGrid').addEventListener('click',e=>{let b=e.target.closest('[data-sector]');if(!b)return;currentSector=b.dataset.sector;currentCategory='Todas';syncSectors();renderCategoryPills();renderProducts();});$('resetSectorBtn').addEventListener('click',()=>{currentSector='all';currentCategory='Todas';syncSectors();renderCategoryPills();renderProducts();});$('searchInput').addEventListener('input',e=>{searchQuery=e.target.value;$('clearSearchBtn').classList.toggle('hidden',!searchQuery);renderProducts();});$('clearSearchBtn').addEventListener('click',()=>{searchQuery='';$('searchInput').value='';$('clearSearchBtn').classList.add('hidden');renderProducts();});$('resetAllFiltersBtn').addEventListener('click',resetAll);$('resetEmptyBtn').addEventListener('click',resetAll);$('productGrid').addEventListener('click',e=>{let b=e.target.closest('[data-open]');if(b)openTechSheet(b.dataset.open);});$('closeModalBtn').addEventListener('click',closeModalFunc);$('techSheetModal').addEventListener('click',e=>{if(e.target===$('techSheetModal'))closeModalFunc();});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModalFunc();if(e.key==='/'&&document.activeElement!==$('searchInput')){e.preventDefault();$('searchInput').focus();}});});
 </script></body>
 </html>
