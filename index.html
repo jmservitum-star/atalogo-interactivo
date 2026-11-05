@@ -152,7 +152,16 @@
 </button>
 <!-- Centros Educativos -->
 <button class="sector-card group relative rounded-xl border border-slate-200 bg-slate-50 text-slate-700 hover:border-emerald-400 hover:bg-emerald-50/50 p-2.5 text-center transition-all duration-200" data-sector="Centros Educativos">
-
+<svg class="sector-photo" viewBox="0 0 360 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de un centro educativo">
+<rect width="360" height="190" fill="#dceef7"/><rect y="147" width="360" height="43" fill="#b3d7c3"/>
+<circle cx="298" cy="38" r="23" fill="#f6cd70"/><path d="M64 80L180 20L296 80Z" fill="#1b6387"/>
+<rect x="78" y="80" width="204" height="99" rx="3" fill="#f8f6ef"/><rect x="78" y="80" width="204" height="10" fill="#174d70"/>
+<rect x="105" y="101" width="48" height="44" fill="#a8d6e8" stroke="#42758c" stroke-width="5"/><path d="M129 101V145M105 123H153" stroke="#42758c" stroke-width="4"/>
+<rect x="207" y="101" width="48" height="44" fill="#a8d6e8" stroke="#42758c" stroke-width="5"/><path d="M231 101V145M207 123H255" stroke="#42758c" stroke-width="4"/>
+<rect x="165" y="125" width="30" height="54" fill="#9a684c"/><circle cx="189" cy="155" r="2" fill="#f4cf76"/>
+<rect x="150" y="61" width="60" height="22" rx="4" fill="#fff"/><text x="180" y="76" text-anchor="middle" font-size="13" font-family="Arial,sans-serif" font-weight="bold" fill="#185477">ESCUELA</text>
+<path d="M0 169H360" stroke="#78a68c" stroke-width="5"/>
+</svg>
 <span class="text-xs font-bold block">Educación</span>
 <span class="text-[9px] text-slate-500 block">Tránsito Alto</span>
 </button>
@@ -180,7 +189,7 @@
 </div>
 </div>
 <!-- HORIZONTAL SCROLLABLE CATEGORIES -->
-<div class="flex items-center gap-2 overflow-x-auto pb-1 hide-scrollbar" id="categoryPillsContainer">
+<div class="grid grid-cols-2 gap-2 pb-1" id="categoryPillsContainer">
 <!-- Injected via JS -->
 </div>
 </section>
@@ -303,7 +312,7 @@ function sectorMatch(p){if(currentSector==='all')return true;const text=p.name+'
 function sectorProducts(){return productsData.filter(sectorMatch);}
 
 const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function renderCategoryPills(){const base=sectorProducts();const cats=['Todas',...new Set(base.map(p=>p.category))];if(!cats.includes(currentCategory))currentCategory='Todas';$('categoryPillsContainer').innerHTML=cats.map(c=>`<button data-category="${esc(c)}" class="category-pill text-xs font-semibold px-3 py-2 rounded-xl whitespace-nowrap border ${c===currentCategory?'bg-servitum-navy text-white border-servitum-navy':'bg-slate-100 text-slate-700 border-slate-200'}">${esc(c)} <span class="opacity-70">${c==='Todas'?base.length:base.filter(p=>p.category===c).length}</span></button>`).join('');}
+function renderCategoryPills(){const base=sectorProducts();const cats=['Todas',...new Set(base.map(p=>p.category))];if(!cats.includes(currentCategory))currentCategory='Todas';$('categoryPillsContainer').innerHTML=cats.map(c=>`<button data-category="${esc(c)}" class="category-pill text-xs font-semibold px-3 py-2 rounded-xl whitespace-normal text-center min-h-[44px] border ${c===currentCategory?'bg-servitum-navy text-white border-servitum-navy':'bg-slate-100 text-slate-700 border-slate-200'}">${esc(c)} <span class="opacity-70">${c==='Todas'?base.length:base.filter(p=>p.category===c).length}</span></button>`).join('');}
 function filtered(){let q=searchQuery.toLocaleLowerCase('es').trim();return sectorProducts().filter(p=>(currentCategory==='Todas'||p.category===currentCategory)&&(!q||(p.name+' '+p.category+' '+p.description).toLocaleLowerCase('es').includes(q)));}
 
 function renderProducts(){const list=filtered();$('productCounter').textContent=list.length;$('activeFilterBadge').textContent=(currentSector==='all'?'Todos los sectores':currentSector)+(currentCategory==='Todas'?'':' · '+currentCategory);$('resetSectorBtn').classList.toggle('hidden',currentSector==='all');$('emptyState').classList.toggle('hidden',list.length!==0);$('productGrid').innerHTML=list.map(p=>`<article class="product-card bg-white rounded-2xl border border-slate-200 p-4 flex flex-col card-shadow card-shadow-hover"><div class="flex items-center justify-between gap-2 mb-2"><span class="text-[10px] font-bold text-servitum-navy bg-servitum-lightCyan px-2 py-1 rounded">${esc(p.category)}</span></div><div class="w-full h-44 bg-slate-50 rounded-xl p-3 flex items-center justify-center"><img loading="lazy" src="${esc(p.image)}" alt="${esc(p.name)}" class="w-full h-full object-contain" onerror="this.style.display='none';this.parentElement.textContent='Imagen no disponible'"></div><h3 class="text-sm font-bold mt-3 text-slate-900">${esc(p.name)}</h3><p class="text-xs text-slate-500 mt-2 mb-4 flex-1">${esc(p.description)}</p><button data-open="${p.id}" class="w-full bg-servitum-navy text-white text-xs font-semibold py-3 rounded-xl">Ver detalles del producto</button></article>`).join('');}
