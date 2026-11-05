@@ -200,84 +200,31 @@
 <!-- FLOATING BACK TO TOP -->
 <button id="backToTopBtn" type="button" aria-label="Volver arriba" title="Volver arriba" class="fixed bottom-6 right-5 sm:right-7 z-40 bg-servitum-navy text-white w-12 h-12 rounded-full shadow-lg border border-white/20 items-center justify-center hover:bg-servitum-cyan focus:outline-none focus:ring-4 focus:ring-sky-200 transition-all" style="display:none"><i class="fas fa-arrow-up text-lg" aria-hidden="true"></i></button>
 <!-- FOOTER -->
-<!-- TECHNICAL SPECIFICATION MODAL -->
-<div class="fixed inset-0 z-50 hidden overflow-y-auto bg-slate-900/60 backdrop-blur-sm p-3 sm:p-6 flex items-center justify-center" id="techSheetModal">
-<div class="relative w-full max-w-3xl bg-white rounded-2xl border border-slate-200 shadow-2xl overflow-hidden text-slate-800 my-auto max-h-[92vh] flex flex-col">
-<!-- MODAL HEADER -->
-<div class="px-5 py-4 border-b border-slate-200 bg-slate-50 flex items-center justify-between sticky top-0 z-10">
-<div class="flex items-center gap-2">
-<span class="bg-servitum-navy text-white text-xs px-2.5 py-1 rounded-md font-bold" id="modalCategoryTag">
-            Categoría
-          </span>
+<!-- LARGE PRODUCT DETAIL MODAL -->
+<div class="fixed inset-0 z-50 hidden bg-slate-900/65 backdrop-blur-sm p-2 sm:p-5 items-center justify-center" id="techSheetModal">
+<div class="relative w-full max-w-6xl bg-white rounded-2xl border border-slate-200 shadow-2xl overflow-hidden text-slate-800 max-h-[96vh] flex flex-col">
+<div class="px-4 sm:px-6 py-3 border-b border-slate-200 bg-slate-50 flex items-center justify-between shrink-0">
+<span class="bg-servitum-navy text-white text-xs px-3 py-1.5 rounded-lg font-bold" id="modalCategoryTag">Categoría</span>
+<button class="w-10 h-10 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-700 flex items-center justify-center" id="closeModalBtn" aria-label="Cerrar ficha"><i class="fas fa-times"></i></button>
 </div>
-<button class="w-8 h-8 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-600 hover:text-slate-900 flex items-center justify-center transition-colors" id="closeModalBtn">
-<i class="fas fa-times text-sm"></i>
-</button>
+<div class="overflow-y-auto flex-1">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-7 p-4 sm:p-7 items-start">
+<div class="md:col-span-6 bg-slate-50 rounded-2xl border border-slate-200 relative min-h-[300px] md:min-h-[510px] flex items-center justify-center p-4 sm:p-7">
+<span class="absolute top-3 left-3 bg-white text-slate-700 text-xs font-bold px-3 py-1 rounded-lg border border-slate-200" id="modalPackagingBadge">Producto</span>
+<div class="w-full h-[280px] sm:h-[420px] md:h-[480px] flex items-center justify-center" id="modalImageContainer"></div>
 </div>
-<!-- MODAL BODY -->
-<div class="p-5 sm:p-6 overflow-y-auto space-y-6 flex-1">
-<!-- HERO PRODUCT BOX -->
-<div class="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
-<div class="sm:col-span-5 bg-slate-50 p-4 rounded-xl border border-slate-200 flex items-center justify-center min-h-[200px] relative">
-<span class="absolute top-2.5 left-2.5 bg-white text-slate-700 text-[11px] font-bold px-2 py-0.5 rounded border border-slate-200 shadow-sm" id="modalPackagingBadge">
-              Presentación
-            </span>
-<div class="w-full h-44 flex items-center justify-center p-2" id="modalImageContainer">
-<!-- SVG preview injected via JS -->
-</div>
-</div>
-<div class="sm:col-span-7 space-y-3">
-<div>
-<h3 class="text-xl font-bold text-slate-900 leading-snug" id="modalTitle">
-                Nombre del Producto
-              </h3>
-<p class="text-xs text-servitum-cyan font-bold mt-0.5" id="modalSubtitle">
-                Línea Profesional
-              </p>
-</div>
-<p class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-200" id="modalDesc">
-              Descripción del producto...
-            </p>
-<div>
-<span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1.5">
-                Sectores de Aplicación Recomendados:
-              </span>
-<div class="flex flex-wrap gap-1.5" id="modalSectorsContainer">
-<!-- Injected via JS -->
+<div class="md:col-span-6 space-y-5 pt-1">
+<div><h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight" id="modalTitle">Nombre del producto</h3><p class="text-sm text-servitum-cyan font-bold mt-2" id="modalSubtitle">Categoría</p></div>
+<div><h4 class="text-sm font-bold text-slate-800 mb-2">Descripción del producto</h4><p class="text-sm sm:text-base text-slate-600 leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-200" id="modalDesc"></p></div>
+<div id="modalSectorsSection"><h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Sectores de aplicación recomendados</h4><div class="flex flex-wrap gap-2" id="modalSectorsContainer"></div></div>
+<div><h4 class="text-sm font-bold text-slate-800 mb-3"><i class="fas fa-list-check text-servitum-cyan mr-2"></i>Especificaciones técnicas</h4><div class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><table class="w-full text-sm text-left text-slate-700"><tbody class="divide-y divide-slate-200" id="modalSpecsTable"></tbody></table></div></div>
+<div id="modalAdvantagesSection"><h4 class="text-sm font-bold text-slate-800 mb-2"><i class="fas fa-star text-amber-500 mr-2"></i>Ventajas y beneficios</h4><ul class="grid grid-cols-1 gap-2 text-sm text-slate-600" id="modalAdvantagesList"></ul></div>
 </div>
 </div>
 </div>
-</div>
-<!-- SPECIFICATIONS TABLE -->
-<div class="border-t border-slate-200 pt-4">
-<h4 class="text-xs font-bold uppercase tracking-wider text-slate-800 mb-3 flex items-center gap-1.5">
-<i class="fas fa-list-check text-servitum-cyan"></i> Especificaciones Técnicas
-          </h4>
-<div class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden">
-<table class="w-full text-xs text-left text-slate-700">
-<tbody class="divide-y divide-slate-200" id="modalSpecsTable">
-<!-- Injected via JS -->
-</tbody>
-</table>
-</div>
-</div>
-<!-- KEY ADVANTAGES -->
-<div>
-<h4 class="text-xs font-bold uppercase tracking-wider text-slate-800 mb-2 flex items-center gap-1.5">
-<i class="fas fa-star text-amber-500"></i> Ventajas y Beneficios
-          </h4>
-<ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-600" id="modalAdvantagesList">
-<!-- Injected via JS -->
-</ul>
-</div>
-</div>
-<!-- MODAL FOOTER -->
-<div class="px-5 py-3 border-t border-slate-200 bg-slate-50 flex items-center justify-between text-xs text-slate-500">
-<span class="flex items-center gap-1.5">
-<i class="fas fa-info-circle text-servitum-cyan"></i>Información del producto</span>
-<button class="bg-servitum-navy hover:bg-servitum-darkNavy text-white font-semibold px-4 py-2 rounded-xl transition-colors" onclick="closeModalFunc()">
-          Cerrar Ficha
-        </button>
+<div class="px-4 sm:px-6 py-3 border-t border-slate-200 bg-slate-50 flex items-center justify-between gap-3 shrink-0">
+<span class="text-xs text-slate-500"><i class="fas fa-info-circle text-servitum-cyan mr-1"></i>Información del producto</span>
+<button class="bg-servitum-navy hover:bg-servitum-darkNavy text-white text-sm font-semibold px-5 py-2.5 rounded-xl" onclick="closeModalFunc()">Cerrar ficha</button>
 </div>
 </div>
 </div>
@@ -305,7 +252,7 @@ function renderCategoryPills(){const base=sectorProducts();const cats=['Todas',.
 function filtered(){let q=searchQuery.toLocaleLowerCase('es').trim();return sectorProducts().filter(p=>(currentCategory==='Todas'||p.category===currentCategory)&&(!q||(p.name+' '+p.category+' '+p.description).toLocaleLowerCase('es').includes(q)));}
 
 function renderProducts(){const list=filtered();$('productCounter').textContent=list.length;$('activeFilterBadge').textContent=(currentSector==='all'?'Todos los sectores':currentSector)+(currentCategory==='Todas'?'':' · '+currentCategory);$('resetSectorBtn').classList.toggle('hidden',currentSector==='all');$('emptyState').classList.toggle('hidden',list.length!==0);$('productGrid').innerHTML=list.map(p=>`<article class="product-card bg-white rounded-2xl border border-slate-200 p-4 flex flex-col card-shadow card-shadow-hover"><div class="flex items-center justify-between gap-2 mb-2"><span class="text-[10px] font-bold text-servitum-navy bg-servitum-lightCyan px-2 py-1 rounded">${esc(p.category)}</span></div><div class="w-full h-44 bg-slate-50 rounded-xl p-3 flex items-center justify-center"><img loading="lazy" src="${esc(p.image)}" alt="${esc(p.name)}" class="w-full h-full object-contain" onerror="this.style.display='none';this.parentElement.textContent='Imagen no disponible'"></div><h3 class="text-sm font-bold mt-3 text-slate-900">${esc(p.name)}</h3><p class="text-xs text-slate-500 mt-2 mb-4 flex-1">${esc(p.description)}</p><button data-open="${p.id}" class="w-full bg-servitum-navy text-white text-xs font-semibold py-3 rounded-xl">Ver detalles del producto</button></article>`).join('');}
-function openTechSheet(id){const p=productsData.find(x=>x.id===id);if(!p)return;$('modalTitle').textContent=p.name;$('modalSubtitle').textContent=p.category;$('modalCategoryTag').textContent=p.category;$('modalPackagingBadge').textContent='Producto';$('modalDesc').textContent=p.description;$('modalImageContainer').innerHTML=`<img src="${esc(p.image)}" alt="${esc(p.name)}" class="w-full h-full object-contain">`;$('modalSectorsContainer').innerHTML='';$('modalSpecsTable').innerHTML=`<tr><td class="py-3 px-4 font-semibold">Presentación / descripción</td><td class="py-3 px-4">${esc(p.description)}</td></tr>`;$('modalAdvantagesList').innerHTML='';$('techSheetModal').classList.remove('hidden');document.body.style.overflow='hidden';}
+function openTechSheet(id){const p=productsData.find(x=>x.id===id);if(!p)return;$('modalTitle').textContent=p.name;$('modalSubtitle').textContent=p.category;$('modalCategoryTag').textContent=p.category;$('modalPackagingBadge').textContent='Producto';$('modalDesc').textContent=p.description;$('modalImageContainer').innerHTML=`<img src="${esc(p.image)}" alt="${esc(p.name)}" class="w-full h-full object-contain">`;$('modalSectorsContainer').innerHTML='';$('modalSectorsSection').classList.add('hidden');$('modalSpecsTable').innerHTML=`<tr><td class="py-3 px-4 font-semibold">Presentación / descripción</td><td class="py-3 px-4">${esc(p.description)}</td></tr>`;$('modalAdvantagesList').innerHTML='';$('modalAdvantagesSection').classList.add('hidden');$('techSheetModal').classList.remove('hidden');document.body.style.overflow='hidden';}
 function closeModalFunc(){$('techSheetModal').classList.add('hidden');document.body.style.overflow='';}
 function resetAll(){currentCategory='Todas';currentSector='all';searchQuery='';$('searchInput').value='';$('clearSearchBtn').classList.add('hidden');syncSectors();renderCategoryPills();renderProducts();}
 function syncSectors(){document.querySelectorAll('.sector-card').forEach(b=>{let active=b.dataset.sector===currentSector;b.classList.toggle('sector-selected',active);b.classList.toggle('bg-servitum-navy',active);b.classList.toggle('text-white',active);b.classList.toggle('border-servitum-navy',active);b.classList.toggle('bg-slate-50',!active);b.classList.toggle('text-slate-700',!active);b.classList.toggle('border-slate-200',!active);});}
